@@ -1,0 +1,47 @@
+---
+import instagram from '../assets/icons/instagram.svg';
+import tiktok from '../assets/icons/tiktok.svg';
+import facebook from '../assets/icons/facebook.svg';
+const socials = [
+  { name: 'Instagram', src: instagram.src },
+  { name: 'TikTok', src: tiktok.src },
+  { name: 'Facebook', src: facebook.src },
+];
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <p class="h1 logo">second sun</p>
+        <p>Old souls. New favorites. Chico, California.</p>
+      </div>
+      <div>
+        <p class="label">Say hello</p>
+        <a class="body-lg mail" href="mailto:hello@secondsun.example">hello@secondsun.example</a>
+      </div>
+      <div>
+        <p class="label">Follow the finds</p>
+        <ul class="social">
+          {socials.map((s) => <li><a href="#" aria-label={s.name}><img src={s.src} width="24" height="24" alt="" /></a></li>)}
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <p class="body-sm">© 2026 Second Sun. Good things deserve a second life.</p>
+      <p class="label">Concept store · Sample business details</p>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer { background: var(--color-text-primary); color: var(--color-text-on-accent); padding-top: 47px; }
+  .top { display: grid; grid-template-columns: 1fr 444px 132px; gap: 48px; padding-bottom: 56px; }
+  .logo { margin-bottom: 11px; }
+  .top .label { margin-top: 8px; }
+  .mail { display: block; margin-top: 16px; color: inherit; text-decoration: none; }
+  .mail:hover { text-decoration: underline; }
+  .social { list-style: none; margin: 24px 0 0; padding: 0; display: flex; gap: 40px; }
+  .social a { display: block; }
+  .bottom { display: flex; justify-content: space-between; gap: 24px; padding-block: 28px; border-top: 1px solid var(--color-border-strong); }
+  .bottom .body-sm { color: inherit; }
+  @media (max-width: 900px) { .top { grid-template-columns: 1fr; gap: 32px; } .bottom { flex-direction: column; gap: 12px; } .social { gap: 32px; } }
+</style>

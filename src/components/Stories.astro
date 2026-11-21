@@ -1,0 +1,39 @@
+---
+const quotes = [
+  { q: '“The kind of place you pop into for five minutes and leave with your new favorite jacket.”', t: 'The thrill of the find' },
+  { q: '“Finally, vintage that feels curated, not crowded. Every rack has something special.”', t: 'Less digging. More discovering.' },
+  { q: '“My favorite Friday ritual. New finds, lovely people, and clothes with a little soul.”', t: 'Come for the clothes. Stay for the people.' },
+];
+---
+<section class="section section--sage">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label">04 / Good clothes, good people</p>
+      <h2 class="h1">A little local love.</h2>
+      <p class="label label--secondary">Illustrative customer quotes</p>
+    </div>
+    <ul class="quotes">
+      {quotes.map((x) => (
+        <li>
+          <blockquote class="h3">{x.q}</blockquote>
+          <p class="label">{x.t}</p>
+          <p class="body-sm">Sample customer story</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .section-head { margin-bottom: 40px; }
+  .quotes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .quotes li { padding-inline: 24px; border-left: 1px solid var(--color-border-strong); display: flex; flex-direction: column; gap: 16px; }
+  .quotes li:first-child { padding-left: 0; border-left: 0; }
+  .quotes li:last-child { padding-right: 0; }
+  blockquote { margin: 0 0 24px; }
+  .quotes .body-sm { margin-top: -8px; }
+  @media (max-width: 900px) {
+    .quotes { grid-template-columns: 1fr; gap: 32px; }
+    .quotes li, .quotes li:first-child { padding: 0 0 32px; border-left: 0; border-bottom: 1px solid var(--color-border-strong); }
+    .quotes li:last-child { border-bottom: 0; padding-bottom: 0; }
+  }
+</style>

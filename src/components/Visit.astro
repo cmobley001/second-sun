@@ -1,0 +1,87 @@
+---
+import marker from '../assets/icons/marker.svg';
+const maps = 'https://www.google.com/maps/search/?api=1&query=Downtown+Chico+CA';
+---
+<section class="section" id="visit">
+  <div class="wrap grid">
+    <div class="info">
+      <p class="label label--accent">05 / Your next favorite spot</p>
+      <h2 class="h1">Come for a browse.<br />Leave with a story.</h2>
+      <p class="label label--accent sample">Sample visit details · Confirm before launch</p>
+      <div class="cols">
+        <div>
+          <h3 class="nav-link">Find us</h3>
+          <address class="body-lg dark">123 Main Street<br />Chico, CA 95928</address>
+        </div>
+        <div>
+          <h3 class="nav-link">Opening hours</h3>
+          <dl class="hours">
+            <div><dt>Tue–Sat</dt><dd>11am–6pm</dd></div>
+            <div><dt>Sunday</dt><dd>12pm–5pm</dd></div>
+            <div><dt>Monday</dt><dd>Taking a breather</dd></div>
+          </dl>
+        </div>
+      </div>
+      <h3 class="nav-link parking">Parking, sorted.</h3>
+      <p class="park">Downtown metered street parking nearby.<br />Check posted signs before you settle in.</p>
+      <div class="cta">
+        <a class="btn btn--primary" href={maps} target="_blank" rel="noopener"><span>Get Directions</span><span>→</span></a>
+        <span class="body-sm">Opens downtown Chico in Maps</span>
+      </div>
+    </div>
+
+    <div class="map" role="img" aria-label="Illustrative map of downtown Chico showing the Second Sun location">
+      <div class="park-area"></div>
+      <div class="campus"></div>
+      <i class="st h" style="top:82px"></i><i class="st h" style="top:190px"></i><i class="st h" style="top:298px"></i><i class="st h" style="top:406px"></i>
+      <i class="st v" style="left:72px"></i><i class="st v" style="left:222px"></i><i class="st v" style="left:372px"></i><i class="st v" style="left:522px"></i>
+      <span class="label label--secondary t" style="left:25px;top:46px">Chico State</span>
+      <span class="label label--secondary t" style="left:400px;top:341px">Main St</span>
+      <span class="label label--secondary t" style="left:248px;top:132px">Broadway</span>
+      <span class="label label--secondary t" style="left:440px;top:194px">W 2nd St</span>
+      <span class="label label--secondary t" style="left:88px;top:301px">W 3rd St</span>
+      <span class="h3 t town">DOWNTOWN<br />CHICO</span>
+      <img class="pin" src={marker.src} width="48" height="48" alt="" />
+      <div class="tag nav-link">Second Sun · Chico</div>
+      <div class="notice label label--secondary">Illustrative map preview · Not to scale</div>
+    </div>
+  </div>
+</section>
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 640px; gap: 96px; align-items: start; }
+  .info .h1 { margin-top: 24px; }
+  .sample { margin-top: 32px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 28px; }
+  .cols h3, .parking { margin-bottom: 12px; }
+  .dark { font-style: normal; color: var(--color-text-primary); }
+  .hours { margin: 0; }
+  .hours div { display: flex; gap: 16px; }
+  .hours dt { min-width: 80px; }
+  .hours dd { margin: 0; }
+  .parking { margin-top: 36px; }
+  .park { color: var(--color-text-secondary); }
+  .cta { display: flex; align-items: center; gap: 24px; margin-top: 32px; flex-wrap: wrap; }
+
+  .map { position: relative; overflow: hidden; height: 524px; background: var(--color-bg-muted); }
+  .map > * { position: absolute; }
+  .st { background: var(--color-bg-surface); }
+  .st.h { left: -20px; width: 700px; height: 24px; }
+  .st.v { top: -10px; height: 550px; width: 22px; }
+  .park-area { left: 397px; top: -20px; width: 240px; height: 150px; background: var(--color-bg-sage-soft); transform: rotate(12deg); }
+  .campus { left: 10px; top: 15px; width: 184px; height: 150px; background: var(--color-bg-sage-soft); }
+  .t { white-space: nowrap; }
+  .town { left: 250px; top: 390px; color: var(--color-text-secondary); }
+  .pin { left: 328px; top: 224px; }
+  .tag { left: 218px; top: 276px; width: 268px; height: 54px; background: var(--color-bg-page); padding: 17px 24px; box-sizing: border-box; }
+  .notice { left: 16px; right: 16px; bottom: 12px; background: var(--color-bg-page); padding: 14px 16px; }
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: 1fr; gap: 48px; }
+    .map { max-width: 640px; }
+  }
+  @media (max-width: 767px) {
+    .cols { grid-template-columns: 1fr; }
+    .map { height: 440px; }
+    .map { margin-inline: calc(var(--gutter) * -1); max-width: none; }
+    .notice { left: 12px; right: 12px; }
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+import { Image } from 'astro:assets';
+import archive from '../assets/images/archive.jpg';
+---
+<section class="story" id="story">
+  <div class="wrap story__grid">
+    <div class="story__media">
+      <Image src={archive} alt="Racks of vintage clothing inside the shop" widths={[480, 960]} sizes="(min-width: 900px) 480px, 100vw" />
+      <p class="label label--secondary">A small shop. An ever-changing archive.</p>
+    </div>
+    <div class="story__copy">
+      <p class="label label--accent">01 / Our story</p>
+      <h2 class="h1">Some things only<br />get better with time.</h2>
+      <p class="body-lg">We’re the treasure hunters behind your next favorite piece. From sun-faded denim to the perfect worn-in leather, we handpick clothes with a past and plenty of future.</p>
+      <p class="story__line">Less fast fashion. More personal style. Always a good story.</p>
+      <p class="label story__note">Fresh on the racks every Friday. Come find yours.</p>
+    </div>
+  </div>
+</section>
+<style>
+  .story { padding-block: 80px 76px; }
+  .story__grid { display: grid; grid-template-columns: 480px 1fr; gap: 96px; align-items: start; }
+  .story__media img { width: 100%; aspect-ratio: 480 / 376; object-fit: cover; }
+  .story__media .label { margin-top: 20px; }
+  .story__copy .h1 { margin-top: 24px; }
+  .story__copy .body-lg { margin-top: 24px; max-width: 620px; }
+  .story__line { margin-top: 24px; max-width: 620px; }
+  .story__note { margin-top: 26px; max-width: 620px; background: var(--color-bg-sage-soft); padding: 16px; }
+  @media (max-width: 900px) {
+    .story { padding-block: 48px; }
+    .story__grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>

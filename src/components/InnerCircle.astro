@@ -1,0 +1,36 @@
+---
+---
+<section class="section section--muted" id="inner-circle">
+  <div class="wrap grid">
+    <div>
+      <p class="label label--accent">06 / First dibs feel good</p>
+      <h2 class="h1">You’re our kind of person.</h2>
+      <p class="body-lg">Join the Inner Circle for fresh drops, VIP sale events,<br />and the occasional love letter to really good clothes.</p>
+    </div>
+    <form class="form" action="#" onsubmit="event.preventDefault(); this.querySelector('.thanks').hidden = false;">
+      <div class="row">
+        <label class="field">
+          <span class="label">Email address</span>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </label>
+        <button class="btn btn--primary" type="submit"><span>Join</span><span>→</span></button>
+      </div>
+      <p class="body-sm">Just the good stuff. Unsubscribe anytime.</p>
+      <p class="body-sm thanks" hidden>Thanks — you’re on the list (sample form).</p>
+    </form>
+  </div>
+</section>
+<style>
+  .grid { display: grid; grid-template-columns: 1fr 620px; gap: 48px; align-items: start; padding-block: 0; }
+  .grid .h1 { margin-top: 24px; }
+  .grid .body-lg { margin-top: 24px; }
+  .form { padding-top: 49px; }
+  .row { display: flex; gap: 16px; align-items: flex-end; }
+  .field { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .field input { font: 400 14px/20px var(--font-body); padding: 12px 14px; background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); color: var(--color-text-primary); width: 100%; }
+  .field input::placeholder { color: var(--color-text-secondary); }
+  .form .body-sm { margin-top: 12px; }
+  .row .btn { margin-bottom: 0; }
+  @media (max-width: 1100px) { .grid { grid-template-columns: 1fr; } .form { padding-top: 0; } }
+  @media (max-width: 767px) { .row { flex-direction: column; align-items: stretch; } .row .btn { justify-content: space-between; } .grid .body-lg br { display: none; } }
+</style>

@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import hero from '../assets/images/hero.jpg';
+---
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div class="hero__copy">
+      <p class="label label--accent">Handpicked vintage. Never ordinary.</p>
+      <h1 class="display">Good clothes.<br />Great stories.<br />Second lives.</h1>
+      <p class="body-lg">A little nostalgia. A lot of personality. Discover one-of-a-kind pieces made for your next chapter, right here in Chico.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="https://www.google.com/maps/search/?api=1&query=Downtown+Chico+CA" target="_blank" rel="noopener"><span>Visit Us Today</span><span>→</span></a>
+        <a class="btn btn--outline" href="#collections"><span>View Latest Drop</span><span>↓</span></a>
+      </div>
+      <p class="label label--secondary">New finds every Friday. The good ones go fast.</p>
+      <p class="label hero__index">01 / The everyday archive</p>
+    </div>
+    <figure class="hero__photo">
+      <Image src={hero} alt="Woman in a vintage suede jacket standing in front of a clothing rack" widths={[656, 1312]} sizes="(min-width: 900px) 656px, 100vw" loading="eager" />
+      <figcaption class="label">Well worn. Well loved. Ready for you.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero { padding-block: 24px 48px; }
+  .hero__grid { display: grid; grid-template-columns: 1fr 656px; gap: 31px; align-items: stretch; }
+  .hero__copy { display: flex; flex-direction: column; align-items: flex-start; padding-top: 54px; }
+  .hero__copy .display { margin-top: 32px; }
+  .hero__copy .body-lg { margin-top: 32px; max-width: 508px; }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 56px; }
+  .hero__copy > .label--secondary { margin-top: 40px; }
+  .hero__index { margin-top: auto; padding-top: 48px; }
+  .hero__photo { position: relative; height: 674px; }
+  .hero__photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__photo figcaption { position: absolute; left: 24px; bottom: 24px; background: var(--color-bg-page); padding: 12px 16px; }
+  @media (max-width: 900px) {
+    .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero__copy { padding-top: 24px; }
+    .hero__photo { height: 480px; }
+    .hero__index { display: none; }
+    .hero__photo figcaption { left: 12px; right: 12px; bottom: 12px; }
+  }
+</style>

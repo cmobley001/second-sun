@@ -1,0 +1,43 @@
+---
+import { Image } from 'astro:assets';
+import l1 from '../assets/images/community-1.jpg';
+import l2 from '../assets/images/community-2.jpg';
+import l3 from '../assets/images/community-3.jpg';
+import l4 from '../assets/images/community-4.jpg';
+const looks = [
+  { img: l1, cap: 'Suede days, always.' },
+  { img: l2, cap: 'The weekend uniform.' },
+  { img: l3, cap: 'Small finds. Big feelings.' },
+  { img: l4, cap: 'Good company. Great denim.' },
+];
+---
+<section class="section" id="community">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label label--accent">03 / Seen around Chico</p>
+      <div>
+        <h2 class="h1">Better out in the world.</h2>
+        <p class="body">Your finds, your way. A little inspiration from the Second Sun state of mind.</p>
+      </div>
+      <a class="nav-link more" href="#community">Find us on Instagram →</a>
+    </div>
+    <ul class="grid">
+      {looks.map((l) => (
+        <li>
+          <Image src={l.img} alt={l.cap} widths={[310, 620]} sizes="(min-width: 900px) 310px, 50vw" />
+          <p class="label">{l.cap}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="label label--secondary note">Curated lookbook · Sample social content</p>
+  </div>
+</section>
+<style>
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .grid img { width: 100%; aspect-ratio: 310 / 324; object-fit: cover; }
+  .grid .label { margin-top: 20px; }
+  .more { color: var(--color-text-primary); text-decoration: none; padding-bottom: 6px; }
+  .more:hover { color: var(--color-text-accent); }
+  .note { margin-top: 28px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 20px 16px; } }
+</style>

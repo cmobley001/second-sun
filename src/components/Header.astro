@@ -1,0 +1,108 @@
+---
+const links = [
+  { href: '#story', label: 'Our story' },
+  { href: '#collections', label: 'The collections' },
+  { href: '#community', label: 'The community' },
+];
+---
+<div class="announce">
+  <p class="label wrap">Old soul. New finds. &nbsp;&nbsp;&nbsp; Fresh vintage every Friday · Chico, California</p>
+</div>
+<header class="nav" data-nav>
+  <div class="wrap nav__inner">
+    <a class="nav__logo" href="/">second sun</a>
+    <span class="label label--secondary nav__tag">Vintage · Chico, CA</span>
+    <nav class="nav__links" id="site-menu" aria-label="Primary">
+      {links.map((l) => <a class="nav-link" href={l.href}>{l.label}</a>)}
+    </nav>
+    <a class="btn btn--outline nav__cta" href="#visit"><span>Come on by</span><span>↓</span></a>
+    <button class="nav__toggle nav-link" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle>
+      <span data-nav-toggle-label>Menu</span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = nav?.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const label = nav?.querySelector<HTMLElement>('[data-nav-toggle-label]');
+  const menu = nav?.querySelector<HTMLElement>('#site-menu');
+  const mq = window.matchMedia('(max-width: 767px)');
+
+  function setOpen(open: boolean) {
+    if (!nav || !toggle || !label) return;
+    nav.toggleAttribute('data-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close' : 'Menu';
+    document.body.style.overflow = open && mq.matches ? 'hidden' : '';
+  }
+
+  toggle?.addEventListener('click', () => setOpen(!nav?.hasAttribute('data-open')));
+  menu?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setOpen(false);
+  });
+  nav?.querySelector('.nav__cta')?.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav?.hasAttribute('data-open')) {
+      setOpen(false);
+      toggle?.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (nav?.hasAttribute('data-open') && !nav.contains(e.target as Node)) setOpen(false);
+  });
+  mq.addEventListener('change', () => setOpen(false));
+</script>
+
+<style>
+  .announce { background: var(--color-text-primary); color: var(--color-text-on-accent); padding-block: 10px; text-align: center; }
+  .nav { position: sticky; top: 0; z-index: 10; background: var(--color-bg-page); }
+  .nav__inner { position: relative; display: flex; align-items: center; gap: 28px; height: 96px; }
+  .nav__inner::after { content: ''; position: absolute; left: var(--gutter); right: var(--gutter); bottom: 0; height: 1px; background: var(--color-border-default); }
+  .nav__logo { font: 400 36px/42px var(--font-display); font-variation-settings: 'SOFT' 0, 'WONK' 1; color: var(--color-text-primary); text-decoration: none; }
+  .nav__tag { margin-right: auto; }
+  .nav__links { display: flex; gap: 32px; }
+  .nav__links a { color: var(--color-text-primary); text-decoration: none; }
+  .nav__links a:hover { color: var(--color-text-accent); }
+  .nav__toggle { display: none; }
+  @media (max-width: 1100px) { .nav__tag { display: none; } .nav__logo { margin-right: auto; } }
+
+  @media (max-width: 767px) {
+    .announce .label { font-size: 11px; }
+    .nav__inner { height: 64px; gap: 12px; }
+    .nav__inner::after { left: 0; right: 0; }
+    .nav__logo { font-size: 26px; line-height: 32px; white-space: nowrap; flex-shrink: 0; margin-right: 0; }
+    .nav__cta { flex-shrink: 0; margin-left: auto; white-space: nowrap; }
+    .nav__cta { padding: 8px 14px; gap: 8px; }
+    .nav__cta span:first-child { font-size: 12px; line-height: 16px; }
+    .nav__cta span:last-child { font-size: 14px; line-height: 16px; }
+
+    .nav__toggle {
+      display: inline-flex; align-items: center; min-height: 40px; padding: 0 0 0 4px;
+      background: none; border: 0; color: var(--color-text-primary); cursor: pointer;
+    }
+
+    /* Dropdown panel */
+    .nav__links {
+      position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      padding: 8px var(--gutter) 24px;
+      background: var(--color-bg-page);
+      border-bottom: 1px solid var(--color-border-default);
+      box-shadow: 0 24px 32px -24px rgba(46, 35, 26, 0.25);
+      visibility: hidden; opacity: 0; transform: translateY(-8px);
+      transition: opacity 0.2s, transform 0.2s, visibility 0s 0.2s;
+    }
+    .nav[data-open] .nav__links { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+    .nav__links a {
+      font: 400 32px/40px var(--font-display);
+      font-variation-settings: 'SOFT' 0, 'WONK' 1;
+      text-transform: none; letter-spacing: 0;
+      padding-block: 16px;
+      border-bottom: 1px solid var(--color-border-default);
+    }
+    .nav__links a:last-child { border-bottom: 0; }
+  }
+  @media (max-width: 359px) { .nav__logo { font-size: 24px; } .nav__cta span:last-child { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .nav__links { transition: none; } }
+</style>

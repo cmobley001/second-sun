@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import a from '../assets/images/70s-edit.jpg';
+import b from '../assets/images/streetwear.jpg';
+import c from '../assets/images/finishing-touches.jpg';
+
+const items = [
+  { img: a, title: 'The 70s edit', blurb: 'Earth tones. Big energy.', alt: 'Suede jacket and flared denim from the 70s edit' },
+  { img: b, title: 'Streetwear staples', blurb: 'Worn in. Never worn out.', alt: 'Denim jacket and streetwear staples on a rack' },
+  { img: c, title: 'The finishing touches', blurb: 'Small details. Big personality.', alt: 'Leather bag, scarf and accessories' },
+];
+---
+<section class="section section--muted" id="collections">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="label label--accent">02 / The good stuff</p>
+      <div>
+        <h2 class="h1">Find your era. Make it yours.</h2>
+        <p class="body">A few of our forever favorites. All one of a kind.</p>
+      </div>
+      <p class="label hint">Hover for a style tip ↗</p>
+    </div>
+    <ul class="grid">
+      {items.map((i) => (
+        <li>
+          <a class="card" href="#collections" aria-label={i.title}>
+            <Image src={i.img} alt={i.alt} widths={[416, 832]} sizes="(min-width: 900px) 416px, 100vw" />
+            <span class="card__row"><span class="h3">{i.title}</span><span class="h3" aria-hidden="true">→</span></span>
+            <span class="label label--secondary">{i.blurb}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+<style>
+  .section { padding-block: 64px 64px; }
+  .grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .card { display: block; color: inherit; text-decoration: none; }
+  .card img { width: 100%; aspect-ratio: 416 / 374; object-fit: cover; transition: transform 0.4s; }
+  .card:hover img { transform: scale(1.02); }
+  .card :global(img) { }
+  .card { overflow: hidden; }
+  .card__row { display: flex; justify-content: space-between; margin-block: 24px 16px; }
+  .card:hover .card__row .h3:first-child { color: var(--color-text-accent); }
+  .hint { padding-bottom: 6px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; gap: 40px; } .hint { display: none; } }
+</style>
